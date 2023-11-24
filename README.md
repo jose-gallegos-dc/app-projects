@@ -64,4 +64,40 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# app-projects
+
+
+# App-projects
+
+Para testear el proyecto.
+
+Después de clonar el repositorio, en la carpeta del proyecto corra en consola:
+
+- composer install
+- cp .env.example .env 
+- php artisan key:generate
+- php artisan storage:link
+- npm install
+
+También, debe crear una base de datos en su gestor sql(mysql de preferencia), agregue sus credenciales en el archivo .env:
+    - Ejemplo: 
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=projects_db
+        DB_USERNAME=root
+        DB_PASSWORD=
+
+Ahora corra las migraciones y seeders, para esto en la consola:
+    - php artisan migrate:fresh --seed
+    - php artisan optimize:clear
+
+
+Para testear usuarios puede usar estas credenciales: 
+    Administrador
+        user: admin@email.com
+        password: Adm1ni$Tr4d0R
+
+    Editor
+        user: jane.doe@email.com
+        password: Ed1T0r12345
+
