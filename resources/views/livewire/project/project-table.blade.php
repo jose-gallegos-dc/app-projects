@@ -5,6 +5,14 @@
         </h2>
     </x-slot>
 
+    @if (session()->has('message'))
+        <div
+            class="mt-4 font-regular relative block w-full rounded-lg bg-green-400 p-4 text-base leading-5 text-gray-700 opacity-100">
+            {{ session('message') }}
+        </div>
+    @endif
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -32,7 +40,9 @@
 
                                         <tbody>
                                             @foreach ($projects as $project)
-                                                <tr class="border-b dark:border-neutral-500">
+                                                <tr class="border-b dark:border-neutral-500 hover:bg-green-100"
+                                                    wire:click="redirectEdit('{{ $project->id }}')"
+                                                    style="cursor: pointer;">
                                                     <td class="whitespace-nowrap px-6 py-4 font-medium">
                                                         {{ $project->id }}
                                                     </td>

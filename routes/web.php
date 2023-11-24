@@ -2,6 +2,7 @@
 
 use App\Livewire\Project\ProjectCreate;
 use App\Livewire\Project\ProjectDetails;
+use App\Livewire\Project\ProjectEdit;
 use App\Livewire\Project\ProjectList;
 use App\Livewire\Project\ProjectTable;
 use Illuminate\Support\Facades\Route;
@@ -21,10 +22,11 @@ Route::get('/', ProjectList::class)->name('home');
 
 Route::get('/proyecto/{slug}', ProjectDetails::class)->name('project.details');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/proyectos', ProjectTable::class)->name('admin.projects');
     Route::get('/proyectos/nuevo', ProjectCreate::class)->name('admin.project.create');
-})->middleware(['auth']);
+    Route::get('/proyectos/{id}', ProjectEdit::class)->name('admin.project.edit');
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

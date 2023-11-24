@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,16 +15,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-gray-100 dark:bg-gray-900">
 
-    <nav class="flex items-center justify-center md:justify-between flex-wrap bg-teal-500 p-6">
+    <nav class="flex items-center justify-center md:justify-between flex-wrap bg-teal-500 p-3">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
-            <svg class="fill-current h-6 w-6 mr-2" width="28" height="28" viewBox="0 0 54 54"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
-            </svg>
-            <span class="font-semibold text-xl tracking-tight">Tailwind CSS</span>
+            <a href="/" wire:navigate>
+                <x-application-logo class="w-15 h-10 fill-current text-gray-500 ms-3" />
+            </a>
         </div>
 
         <div class="block  items-center w-auto">

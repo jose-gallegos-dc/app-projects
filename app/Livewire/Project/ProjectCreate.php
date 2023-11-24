@@ -14,7 +14,7 @@ class ProjectCreate extends Component
     public $title, $slug, $description, $image, $is_active;
 
     protected $rules = [
-        'title' => 'required',
+        'title' => 'required|unique:projects',
         'description' => 'required',
         'image' => 'required|image'
     ];
@@ -23,15 +23,6 @@ class ProjectCreate extends Component
     {
         return view('livewire.project.project-create')
             ->layout('layouts.app');
-    }
-
-    public function resetInputFields()
-    {
-        $this->title = '';
-        $this->slug = '';
-        $this->description = '';
-        $this->image = null;
-        $this->is_active = 0;
     }
 
     public function storeProject()
@@ -43,18 +34,12 @@ class ProjectCreate extends Component
             $this->slug = Str::slug($this->title); // Genera el slug desde el título.
 
             if ($this->image) {
-                // Genera un nombre único para la imagen.
                 $imageName = uniqid() . '_' . $this->image->getClientOriginalName();
-
-                // Almacena la imagen en la carpeta 'public' con el nombre único.
                 $this->image->storeAs('public', $imageName);
-
-                // Asigna el nombre único de la imagen al campo 'image' en la base de datos.
                 $this->image = $imageName;
             }
 
             $this->is_active = $this->is_active  ? 1 : 0;
-
 
             Project::create([
                 'title' => $this->title,
@@ -64,9 +49,7 @@ class ProjectCreate extends Component
                 'is_active' => $this->is_active,
             ]);
 
-            session()->flash('message', 'Proyecto creado con éxito.');
-
-            $this->resetInputFields();
+            return redirect()->route('admin.projects')->with('message', 'Proyecto creado con éxito.');
         } catch (\Throwable $th) {
             session()->flash('error', $th->getMessage());
         }

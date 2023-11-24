@@ -14,7 +14,7 @@ class ProjectList extends Component
     {
         $projects = Project::where('is_active', true)
             ->orderBy('id', 'DESC')
-            ->paginate(3);
+            ->paginate(6);
 
         return view('livewire.project.project-list', compact('projects'))
             ->layout('layouts.web');
