@@ -14,7 +14,7 @@ class ProjectDetails extends Component
         // Devuelve el proyecto activo con base en el valor del slug.
         $this->project = Project::where('slug', $slug)
             ->where('is_active', true)
-            ->first();
+            ->firstOrFail();
     }
 
     public function render()

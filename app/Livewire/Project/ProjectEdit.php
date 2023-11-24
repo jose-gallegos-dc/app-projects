@@ -27,7 +27,7 @@ class ProjectEdit extends Component
     {
         // Devuelve el proyecto activo con base en el valor del slug.
         $this->project = Project::where('id', $id)
-            ->first();
+            ->firstOrFail();
 
         // Verificar si el usuario tiene el rol de administrador
         $isAdmin = Auth::user()->hasRole('admin');
