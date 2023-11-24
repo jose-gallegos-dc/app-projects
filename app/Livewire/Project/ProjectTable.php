@@ -12,8 +12,15 @@ class ProjectTable extends Component
 
     public function render()
     {
-        $projects = Project::paginate(5);
+        $projects = Project::orderBy('id', 'DESC')
+            ->paginate(5);
 
-        return view('livewire.project.project-table', compact('projects'));
+        return view('livewire.project.project-table', compact('projects'))
+            ->layout('layouts.app');
+    }
+
+    public function newProject()
+    {
+        return redirect()->route('admin.project.create');
     }
 }

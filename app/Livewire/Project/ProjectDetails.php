@@ -19,6 +19,7 @@ class ProjectDetails extends Component
 
     public function render()
     {
-        return view('livewire.project.project-details');
+        return view('livewire.project.project-details')
+            ->layout('layouts.web');
     }
 }

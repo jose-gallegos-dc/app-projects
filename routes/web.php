@@ -1,6 +1,9 @@
 <?php
 
+use App\Livewire\Project\ProjectCreate;
 use App\Livewire\Project\ProjectDetails;
+use App\Livewire\Project\ProjectList;
+use App\Livewire\Project\ProjectTable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home');
+Route::get('/', ProjectList::class)->name('home');
 
-Route::get('/proyecto/{slug}', function ($slug) {
-    return view('project_details', ['slug' => $slug]);
-});
+Route::get('/proyecto/{slug}', ProjectDetails::class)->name('project.details');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/proyectos', function () {
-        return view('project_table');
-    })->name('admin.projects');
+    Route::get('/proyectos', ProjectTable::class)->name('admin.projects');
+    Route::get('/proyectos/nuevo', ProjectCreate::class)->name('admin.project.create');
 })->middleware(['auth']);
 
 Route::view('dashboard', 'dashboard')
