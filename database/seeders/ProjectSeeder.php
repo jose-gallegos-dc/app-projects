@@ -15,7 +15,7 @@ class ProjectSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 15; $i++) {
             $title = 'Proyecto ' . $i;
             $slug = 'proyecto-' . $i;
 
@@ -34,7 +34,7 @@ class ProjectSeeder extends Seeder
                 'description' => $description,
                 'image' => $imageName,
                 'is_active' => $faker->boolean,
-                'created_by_user_id' => 2,
+                'created_by_user_id' => rand(1, 3),
             ]);
         }
     }

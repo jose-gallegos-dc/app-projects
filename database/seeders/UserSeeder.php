@@ -27,5 +27,12 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => 'Ed1T0r12345'
         ])->assignRole('editor');
+
+        User::create([
+            'name' => 'Jane Doe',
+            'email' => 'jane.doe@email.com',
+            'email_verified_at' => now(),
+            'password' => 'Ed1T0r12345'
+        ])->assignRole('editor');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Project\ProjectDetails;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home');
+
+Route::get('/proyecto/{slug}', function ($slug) {
+    return view('project_details', ['slug' => $slug]);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/proyectos', function () {
+        return view('project_table');
+    })->name('admin.projects');
+})->middleware(['auth']);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
